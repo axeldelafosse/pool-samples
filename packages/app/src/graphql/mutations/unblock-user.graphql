@@ -1,0 +1,7 @@
+mutation UnblockUser($userId: uuid!, $blockedBy: uuid!) {
+  delete_blocked_users(
+    where: { user_id: { _eq: $userId }, blocked_by: { _eq: $blockedBy } }
+  ) {
+    affected_rows
+  }
+}

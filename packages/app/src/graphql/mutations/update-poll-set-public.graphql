@@ -1,0 +1,5 @@
+mutation UpdatePollSetPublic($pollId: uuid!) {
+  update_polls(where: { id: { _eq: $pollId } }, _set: { type: "public" }) {
+    affected_rows
+  }
+}

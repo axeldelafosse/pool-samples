@@ -1,0 +1,7 @@
+mutation RemoveLinkFromPoll($linkId: uuid!, $pollId: uuid!) {
+  delete_links_polls(
+    where: { link_id: { _eq: $linkId }, poll_id: { _eq: $pollId } }
+  ) {
+    affected_rows
+  }
+}

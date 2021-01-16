@@ -1,0 +1,8 @@
+mutation HideLinkMarkedDone($linkId: uuid!) {
+  update_links(
+    where: { id: { _eq: $linkId } }
+    _set: { hidden: true, happened_at: null }
+  ) {
+    affected_rows
+  }
+}

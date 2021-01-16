@@ -1,0 +1,14 @@
+query GetCommentsForLinkId($id: uuid!, $offset: Int, $limit: Int) {
+  # link: links_by_pk(id: $id) @connection(key: "links") {
+  # link: links(where: { id: { _eq: $id } }) {
+  #  @connection(key: "links", filter: ["id"])
+  link: links(where: { id: { _eq: $id } }) {
+    id
+    name
+    title
+    comments(order_by: { created_at: desc }, offset: $offset, limit: $limit)
+      @connection(key: "comments") {
+      ...Comment
+    }
+  }
+}

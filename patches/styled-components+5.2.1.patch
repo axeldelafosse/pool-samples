@@ -1,0 +1,50 @@
+diff --git a/node_modules/styled-components/native/dist/styled-components.native.esm.js b/node_modules/styled-components/native/dist/styled-components.native.esm.js
+index 00947e4..e6329dc 100644
+--- a/node_modules/styled-components/native/dist/styled-components.native.esm.js
++++ b/node_modules/styled-components/native/dist/styled-components.native.esm.js
+@@ -6233,9 +6233,13 @@ var useTheme = function useTheme() {
+ 
+ // 
+ 
+-var reactNative = require('react-native');
++// var reactNative = require('react-native');
+ 
+-var InlineStyle = _InlineStyle(reactNative.StyleSheet);
++// var InlineStyle = _InlineStyle(reactNative.StyleSheet);
++
++import { StyleSheet as RNStyleSheet } from 'react-native';
++
++var InlineStyle = _InlineStyle(RNStyleSheet);
+ 
+ var StyledNativeComponent$1 = _StyledNativeComponent(InlineStyle);
+ 
+@@ -6246,19 +6250,19 @@ var styled = function styled(tag) {
+  *  assume it's for a good reason and not eagerly load them all */
+ 
+ 
+-var aliases = "ActivityIndicator ActivityIndicatorIOS ART Button DatePickerIOS DrawerLayoutAndroid\n Image ImageBackground ImageEditor ImageStore KeyboardAvoidingView ListView MapView Modal NavigatorIOS\n Picker PickerIOS ProgressBarAndroid ProgressViewIOS ScrollView SegmentedControlIOS Slider\n SliderIOS SnapshotViewIOS Switch RecyclerViewBackedScrollView RefreshControl SafeAreaView StatusBar\n SwipeableListView SwitchAndroid SwitchIOS TabBarIOS Text TextInput ToastAndroid ToolbarAndroid\n Touchable TouchableHighlight TouchableNativeFeedback TouchableOpacity TouchableWithoutFeedback\n View ViewPagerAndroid WebView FlatList SectionList VirtualizedList Pressable";
++// var aliases = "ActivityIndicator ActivityIndicatorIOS ART Button DatePickerIOS DrawerLayoutAndroid\n Image ImageBackground ImageEditor ImageStore KeyboardAvoidingView ListView MapView Modal NavigatorIOS\n Picker PickerIOS ProgressBarAndroid ProgressViewIOS ScrollView SegmentedControlIOS Slider\n SliderIOS SnapshotViewIOS Switch RecyclerViewBackedScrollView RefreshControl SafeAreaView StatusBar\n SwipeableListView SwitchAndroid SwitchIOS TabBarIOS Text TextInput ToastAndroid ToolbarAndroid\n Touchable TouchableHighlight TouchableNativeFeedback TouchableOpacity TouchableWithoutFeedback\n View ViewPagerAndroid WebView FlatList SectionList VirtualizedList Pressable";
+ /* Define a getter for each alias which simply gets the reactNative component
+  * and passes it to styled */
+ 
+-aliases.split(/\s+/m).forEach(function (alias) {
+-  return Object.defineProperty(styled, alias, {
+-    enumerable: true,
+-    configurable: false,
+-    get: function get() {
+-      return styled(reactNative[alias]);
+-    }
+-  });
+-});
++// aliases.split(/\s+/m).forEach(function (alias) {
++//   return Object.defineProperty(styled, alias, {
++//     enumerable: true,
++//     configurable: false,
++//     get: function get() {
++//       return styled(reactNative[alias]);
++//     }
++//   });
++// });
+ 
+ export default styled;
+ export { ThemeConsumer, ThemeContext, ThemeProvider, css, isStyledComponent, useTheme, withTheme };

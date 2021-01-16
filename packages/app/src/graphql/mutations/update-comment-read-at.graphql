@@ -1,0 +1,16 @@
+mutation updateCommentReadAt(
+  $userId: uuid!
+  $commentId: uuid!
+  $now: timestamptz!
+) {
+  update_recipients(
+    where: { user_id: { _eq: $userId }, comment_id: { _eq: $commentId } }
+    _set: { read_at: $now }
+  ) {
+    affected_rows
+    returning {
+      id
+      read_at
+    }
+  }
+}

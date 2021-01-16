@@ -1,0 +1,5 @@
+query GetLinkById($id: uuid!) {
+  link: links_by_pk(id: $id) {
+    ...Link
+  }
+}

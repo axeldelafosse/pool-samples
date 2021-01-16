@@ -1,0 +1,8 @@
+query nest_getMewtwoById($id: String!, $locale: String, $location: String) {
+  result: nest_getMewtwoById(id: $id, locale: $locale, location: $location) {
+    id
+    url
+    title
+    description
+  }
+}

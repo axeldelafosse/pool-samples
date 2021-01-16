@@ -1,0 +1,5 @@
+mutation MarkLinkDone($linkId: uuid!, $now: timestamptz!) {
+  update_links(where: { id: { _eq: $linkId } }, _set: { happened_at: $now }) {
+    affected_rows
+  }
+}

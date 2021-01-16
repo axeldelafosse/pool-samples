@@ -1,0 +1,33 @@
+query GetPollsWithSubpollsForUserId($userId: uuid!) {
+  polls: users_polls(
+    where: { user_id: { _eq: $userId } }
+    order_by: {
+      poll: {
+        updated_at: desc
+        messages_aggregate: { max: { updated_at: desc_nulls_first } }
+        links_in_poll_aggregate: { max: { updated_at: desc_nulls_first } }
+      }
+    }
+  ) {
+    id
+    poll {
+      id
+      name
+      icon
+      picture
+      description
+      type
+      subpolls(order_by: { name: asc }) {
+        id
+        name
+        icon
+      }
+      users: users_in_poll {
+        id
+        user {
+          ...User
+        }
+      }
+    }
+  }
+}

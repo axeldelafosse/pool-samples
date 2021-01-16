@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /login*
+
+Sitemap: https://poolmessenger.com/sitemap.xml

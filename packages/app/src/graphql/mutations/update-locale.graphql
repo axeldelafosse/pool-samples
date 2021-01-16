@@ -1,0 +1,8 @@
+mutation updateLocale($userId: uuid!, $locale: String!) {
+  update_users(where: { id: { _eq: $userId } }, _set: { locale: $locale }) {
+    affected_rows
+    returning {
+      locale
+    }
+  }
+}

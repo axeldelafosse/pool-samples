@@ -1,0 +1,11 @@
+mutation updateExpoPushToken($userId: uuid!, $expoPushToken: String!) {
+  update_users(
+    where: { id: { _eq: $userId } }
+    _set: { expo_push_token: $expoPushToken }
+  ) {
+    affected_rows
+    returning {
+      expo_push_token
+    }
+  }
+}

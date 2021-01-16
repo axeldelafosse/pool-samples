@@ -1,0 +1,8 @@
+mutation DeleteMessage($messageId: uuid!, $now: timestamptz!) {
+  update_messages_by_pk(
+    pk_columns: { id: $messageId }
+    _set: { deleted_at: $now, text: "" }
+  ) {
+    deleted_at
+  }
+}

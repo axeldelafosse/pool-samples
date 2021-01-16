@@ -1,0 +1,5 @@
+query GetPublicPolls {
+  polls(where: { _or: { type: { _eq: "public" } } }) {
+    id
+  }
+}

@@ -1,0 +1,5 @@
+mutation MarkLinkUndone($linkId: uuid!) {
+  update_links(where: { id: { _eq: $linkId } }, _set: { happened_at: null }) {
+    affected_rows
+  }
+}

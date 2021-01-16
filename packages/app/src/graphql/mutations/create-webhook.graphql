@@ -1,0 +1,9 @@
+mutation CreateWebhook($userId: uuid!, $pollId: uuid!, $url: String!) {
+  insert_webhooks(
+    objects: { created_by: $userId, poll_id: $pollId, url: $url }
+  ) {
+    returning {
+      id
+    }
+  }
+}

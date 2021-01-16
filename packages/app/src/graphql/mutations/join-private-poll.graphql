@@ -1,0 +1,6 @@
+mutation JoinPrivatePoll($code: String!, $userId: String!, $pollId: String) {
+  result: nest_joinPrivatePoll(code: $code, userId: $userId, pollId: $pollId) {
+    success
+    message
+  }
+}

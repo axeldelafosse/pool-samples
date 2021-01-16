@@ -1,0 +1,42 @@
+subscription GetPollByIDSub($id: uuid!, $offset: Int!, $limit: Int!) {
+  poll: polls_by_pk(id: $id) @connection(key: "polls") {
+    id
+    name
+    icon
+    description
+    code
+    isListFirst: is_list_first
+    subpolls(order_by: { name: asc }) {
+      id
+      name
+      icon
+    }
+    users: users_in_poll(order_by: { created_at: desc }) {
+      id
+      user {
+        ...User
+      }
+    }
+    newLinks: links_in_poll(
+      order_by: { link: { updated_at: desc } }
+      where: { link: { deleted_at: { _is_null: true } } }
+      offset: $offset
+      limit: $limit
+    ) @connection(key: "links_in_poll", filter: ["offset"]) {
+      id
+      link {
+        ...Link
+      }
+    }
+    messages(limit: 1, order_by: { created_at: desc }) {
+      id
+      recipients: messages_recipients(order_by: { received_at: desc }) {
+        id
+        user {
+          id
+        }
+        read_at
+      }
+    }
+  }
+}

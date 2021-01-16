@@ -1,0 +1,10 @@
+subscription GetMessagesForPollIdSub($id: uuid!, $offset: Int, $limit: Int) {
+  poll: polls_by_pk(id: $id) {
+    id
+    name
+    messages(order_by: { created_at: desc }, offset: $offset, limit: $limit)
+      @connection(key: "messages") {
+      ...Message
+    }
+  }
+}

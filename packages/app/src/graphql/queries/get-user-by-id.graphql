@@ -1,0 +1,5 @@
+query GetUserById($id: uuid!) {
+  user: users_by_pk(id: $id) {
+    ...User
+  }
+}

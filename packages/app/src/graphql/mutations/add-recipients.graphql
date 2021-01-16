@@ -1,0 +1,9 @@
+mutation AddRecipients($userId: uuid!, $commentId: uuid!, $now: timestamptz!) {
+  insert_recipients(
+    objects: { user_id: $userId, comment_id: $commentId, received_at: $now }
+  ) {
+    returning {
+      ...Recipients
+    }
+  }
+}

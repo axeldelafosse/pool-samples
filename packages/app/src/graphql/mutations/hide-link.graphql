@@ -1,0 +1,5 @@
+mutation HideLink($linkId: uuid!) {
+  update_links(where: { id: { _eq: $linkId } }, _set: { hidden: true }) {
+    affected_rows
+  }
+}

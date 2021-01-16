@@ -1,0 +1,7 @@
+mutation UnfollowPoll($userId: uuid!, $pollId: uuid!) {
+  delete_users_followed_polls(
+    where: { user_id: { _eq: $userId }, poll_id: { _eq: $pollId } }
+  ) {
+    affected_rows
+  }
+}

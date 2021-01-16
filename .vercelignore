@@ -1,0 +1,16 @@
+README.md
+.next
+.vscode
+node_modules
+packages/pool-api
+packages/pool-design
+packages/pool-hasura
+packages/pool-nativeapp
+packages/pool-serverless
+packages/web-extension
+packages/app/node_modules
+packages/pool-webapp/node_modules
+packages/pool-webapp/.expo
+packages/pool-webapp/.next
+packages/pool-webapp/.vscode
+packages/berty

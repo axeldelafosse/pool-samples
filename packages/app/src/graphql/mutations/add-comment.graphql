@@ -1,0 +1,21 @@
+mutation AddComment(
+  $linkId: uuid!
+  $pollId: uuid!
+  $userId: uuid!
+  $text: String!
+  $now: timestamptz!
+) {
+  insert_comments(
+    objects: { link_id: $linkId, posted_by: $userId, text: $text }
+  ) {
+    returning {
+      ...Comment
+    }
+  }
+  update_links(where: { id: { _eq: $linkId } }, _set: { updated_at: $now }) {
+    affected_rows
+  }
+  update_polls(where: { id: { _eq: $pollId } }, _set: { updated_at: $now }) {
+    affected_rows
+  }
+}

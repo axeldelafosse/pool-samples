@@ -1,0 +1,17 @@
+mutation AddMessage(
+  $pollId: uuid!
+  $userId: uuid!
+  $text: String!
+  $now: timestamptz!
+) {
+  insert_messages(
+    objects: { poll_id: $pollId, posted_by: $userId, text: $text }
+  ) {
+    returning {
+      ...Message
+    }
+  }
+  update_polls(where: { id: { _eq: $pollId } }, _set: { updated_at: $now }) {
+    affected_rows
+  }
+}

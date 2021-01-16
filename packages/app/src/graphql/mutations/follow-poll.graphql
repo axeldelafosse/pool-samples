@@ -1,0 +1,7 @@
+mutation FollowPoll($userId: uuid!, $pollId: uuid!) {
+  insert_users_followed_polls(objects: { user_id: $userId, poll_id: $pollId }) {
+    returning {
+      id
+    }
+  }
+}

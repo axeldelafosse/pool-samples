@@ -1,0 +1,10 @@
+mutation AddLinkToPoll($linkId: uuid!, $pollId: uuid!, $now: timestamptz!) {
+  result: insert_links_polls(objects: { link_id: $linkId, poll_id: $pollId }) {
+    linkInPoll: returning {
+      id
+    }
+  }
+  update_polls(where: { id: { _eq: $pollId } }, _set: { updated_at: $now }) {
+    affected_rows
+  }
+}

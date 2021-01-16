@@ -1,0 +1,13 @@
+mutation AddMessageRecipients(
+  $userId: uuid!
+  $messageId: uuid!
+  $now: timestamptz!
+) {
+  insert_messages_recipients(
+    objects: { user_id: $userId, message_id: $messageId, received_at: $now }
+  ) {
+    returning {
+      ...MessageRecipients
+    }
+  }
+}

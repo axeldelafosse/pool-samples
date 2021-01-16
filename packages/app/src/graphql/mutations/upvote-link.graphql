@@ -1,0 +1,27 @@
+mutation UpvoteLink(
+  $linkId: uuid!
+  $pollId: uuid!
+  $userId: uuid!
+  $now: timestamptz!
+) {
+  # delete_downvotes(
+  #   where: { link_id: { _eq: $linkId }, created_by: { _eq: $userId } }
+  # ) {
+  #   affected_rows
+  # }
+  insert_upvotes(objects: { link_id: $linkId, created_by: $userId }) {
+    returning {
+      id
+      user {
+        ...User
+      }
+      created_at
+    }
+  }
+  update_links(where: { id: { _eq: $linkId } }, _set: { updated_at: $now }) {
+    affected_rows
+  }
+  update_polls(where: { id: { _eq: $pollId } }, _set: { updated_at: $now }) {
+    affected_rows
+  }
+}

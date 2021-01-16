@@ -1,0 +1,21 @@
+mutation CreateReminder(
+  $userId: uuid!
+  $linkId: uuid!
+  $pollId: uuid!
+  $sendToGroup: Boolean!
+  $sendAt: timestamptz!
+) {
+  insert_reminders(
+    objects: {
+      created_by: $userId
+      link_id: $linkId
+      poll_id: $pollId
+      send_to_group: $sendToGroup
+      send_at: $sendAt
+    }
+  ) {
+    returning {
+      id
+    }
+  }
+}

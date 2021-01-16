@@ -1,0 +1,44 @@
+<html>
+  <head>
+    <script src="popup.js"></script>
+    <style>
+      @keyframes spinner {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+  </head>
+  <body style="width:480px; height:600px; padding: 0; margin: 0;">
+    <div
+      id="activity-indicator"
+      style="position: absolute; top: 0; right: 0; bottom: 0; left: 0; display: flex; align-items: center; justify-content: center;"
+    >
+      <div
+        style="width: 20px; height: 20px; animation: 0.75s linear infinite spinner;"
+      >
+        <svg height="100%" viewBox="0 0 32 32" width="100%">
+          <circle
+            cx="16"
+            cy="16"
+            fill="none"
+            r="14"
+            stroke-width="4"
+            style="stroke: rgb(255, 128, 236); opacity: 0.2;"
+          />
+          <circle
+            cx="16"
+            cy="16"
+            fill="none"
+            r="14"
+            stroke-width="4"
+            style="stroke: rgb(255, 128, 236); stroke-dasharray: 80; stroke-dashoffset: 60;"
+          />
+        </svg>
+      </div>
+    </div>
+  </body>
+</html>

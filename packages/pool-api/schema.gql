@@ -1,0 +1,74 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type SessionObject {
+  type: String!
+  token: String!
+}
+
+type SuccessObjectDto {
+  success: Boolean!
+  message: String
+}
+
+type File {
+  id: ID!
+  reference: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  url: String!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Link {
+  id: ID!
+  url: String!
+  postedBy: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  name: String
+  title: String
+  description: String
+  image: String
+  hidden: Boolean!
+  skip: Int!
+  take: Int!
+}
+
+type Poll {
+  id: ID!
+  name: String!
+  description: String!
+  picture: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  createdBy: ID!
+  type: String!
+  code: String!
+}
+
+type Query {
+  nest_getPollName(code: String!, id: String!): Poll!
+  nest_getMewtwoById(location: String, locale: String, id: String!): [Link!]!
+  getMewtwoForPollNameByUserId(id: String!): [Link!]!
+  getMewtwoForSubpollNameByUserId(id: String!): [Link!]!
+}
+
+type Mutation {
+  nest_userUploadProfilePicture(file: Upload!): SuccessObjectDto!
+  nest_deleteFile(fileId: String!): SuccessObjectDto!
+  nest_uploadFile(file: Upload!, resourceId: String!, resourceType: String!): File!
+  nest_loginUser(password: String!, email: String!): SessionObject!
+  nest_askResetUserPassword(email: String!): SuccessObjectDto!
+  nest_resetUserPassword(token: String!, password: String!, email: String!): SuccessObjectDto!
+  nest_joinPrivatePoll(code: String!, userId: String!, pollId: String): SuccessObjectDto!
+  nest_uploadPollPicture(file: Upload!, pollId: String!): SuccessObjectDto!
+}
+
+"""The `Upload` scalar type represents a file upload."""
+scalar Upload

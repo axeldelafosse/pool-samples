@@ -1,0 +1,21 @@
+mutation AddMessageAttachment(
+  $userId: uuid!
+  $fileId: uuid!
+  $messageId: uuid!
+  $type: String!
+  $url: String!
+) {
+  insert_messages_attachments(
+    objects: {
+      posted_by: $userId
+      file_id: $fileId
+      message_id: $messageId
+      type: $type
+      url: $url
+    }
+  ) {
+    returning {
+      id
+    }
+  }
+}

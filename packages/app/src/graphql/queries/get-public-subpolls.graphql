@@ -1,0 +1,5 @@
+query GetPublicSubpolls {
+  polls(where: { _or: { parent_poll: { type: { _eq: "public" } } } }) {
+    id
+  }
+}

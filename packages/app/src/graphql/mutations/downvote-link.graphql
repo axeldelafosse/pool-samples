@@ -1,0 +1,16 @@
+mutation DownvoteLink($linkId: uuid!, $userId: uuid!) {
+  delete_upvotes(
+    where: { link_id: { _eq: $linkId }, created_by: { _eq: $userId } }
+  ) {
+    affected_rows
+  }
+  insert_downvotes(objects: { link_id: $linkId, created_by: $userId }) {
+    returning {
+      id
+      user {
+        ...User
+      }
+      created_at
+    }
+  }
+}

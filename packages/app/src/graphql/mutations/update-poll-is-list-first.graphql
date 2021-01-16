@@ -1,0 +1,8 @@
+mutation UpdatePollIsListFirst($pollId: uuid!, $isListFirst: Boolean!) {
+  update_polls(
+    where: { id: { _eq: $pollId } }
+    _set: { is_list_first: $isListFirst }
+  ) {
+    affected_rows
+  }
+}

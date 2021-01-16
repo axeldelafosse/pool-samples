@@ -1,0 +1,5 @@
+mutation UpdateLinkPostedBy($linkId: uuid!, $userId: uuid!) {
+  update_links(where: { id: { _eq: $linkId } }, _set: { posted_by: $userId }) {
+    affected_rows
+  }
+}

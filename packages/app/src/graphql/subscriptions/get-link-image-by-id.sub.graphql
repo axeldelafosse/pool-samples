@@ -1,0 +1,6 @@
+subscription GetLinkImageByIdSub($id: uuid!) {
+  link: links_by_pk(id: $id) {
+    id
+    image
+  }
+}

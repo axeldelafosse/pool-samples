@@ -1,0 +1,8 @@
+mutation UpdateWebhook($webhookId: uuid!, $url: String!, $active: Boolean!) {
+  update_webhooks(
+    where: { id: { _eq: $webhookId } }
+    _set: { url: $url, active: $active }
+  ) {
+    affected_rows
+  }
+}

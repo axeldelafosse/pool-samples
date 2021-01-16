@@ -1,0 +1,6 @@
+query GetLinkImageById($id: uuid!) {
+  link: links_by_pk(id: $id) {
+    id
+    image
+  }
+}

@@ -1,0 +1,9 @@
+mutation AddLink($userId: uuid!, $url: String, $note: String, $name: String) {
+  result: insert_links(
+    objects: { posted_by: $userId, url: $url, note: $note, name: $name }
+  ) {
+    link: returning {
+      ...Link
+    }
+  }
+}

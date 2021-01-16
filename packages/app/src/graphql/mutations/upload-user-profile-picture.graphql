@@ -1,0 +1,6 @@
+mutation uploadUserProfilePicture($file: Upload!) {
+  result: nest_userUploadProfilePicture(file: $file) {
+    success
+    message
+  }
+}

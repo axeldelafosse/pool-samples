@@ -1,0 +1,13 @@
+query GetSubpollsForLinkId($id: uuid!) {
+  link: links_by_pk(id: $id) {
+    id
+    subpolls: polls(where: { poll: { type: { _eq: "sub" } } }) {
+      id
+      poll {
+        id
+        icon
+        name
+      }
+    }
+  }
+}

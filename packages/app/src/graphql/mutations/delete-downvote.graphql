@@ -1,0 +1,7 @@
+mutation DeleteDownvote($linkId: uuid!, $userId: uuid!) {
+  delete_downvotes(
+    where: { link_id: { _eq: $linkId }, created_by: { _eq: $userId } }
+  ) {
+    affected_rows
+  }
+}

@@ -1,0 +1,171 @@
+fragment User on users {
+  id
+  first_name
+  last_name
+  picture
+  color
+  last_seen_at
+  locale
+}
+
+fragment CurrentUser on users {
+  ...User
+  email
+  premium
+  blocking: blocked_users {
+    id
+    user_id
+  }
+}
+
+fragment Comment on comments {
+  id
+  text
+  user {
+    ...User
+  }
+  created_at
+  recipients {
+    ...Recipients
+  }
+  attachments: comments_attachments {
+    ...CommentAttachments
+  }
+}
+
+fragment Message on messages {
+  id
+  text
+  user {
+    ...User
+  }
+  created_at
+  recipients: messages_recipients {
+    ...MessageRecipients
+  }
+  attachments: messages_attachments {
+    ...MessageAttachments
+  }
+}
+
+fragment Link on links {
+  id
+  url
+  title
+  description
+  image
+  note
+  name
+  upvotes(order_by: { created_at: asc }) {
+    id
+    user {
+      ...User
+    }
+    created_at
+  }
+  upvotes_aggregate {
+    aggregate {
+      count
+    }
+  }
+  # downvotes(order_by: { created_at: asc }) {
+  #   id
+  #   user {
+  #     ...User
+  #   }
+  #   created_at
+  # }
+  # downvotes_aggregate {
+  #   aggregate {
+  #     count
+  #   }
+  # }
+  comments(limit: 1, order_by: { created_at: desc }) {
+    id
+    recipients(order_by: { received_at: desc }) {
+      id
+      user {
+        id
+      }
+      read_at
+    }
+  }
+  comments_aggregate {
+    aggregate {
+      count
+    }
+  }
+  user {
+    ...User
+  }
+  created_at
+  happened_at
+  recipients: links_recipients {
+    ...LinkRecipients
+  }
+  attachments: links_attachments(limit: 1, order_by: { created_at: desc }) {
+    ...LinkAttachments
+  }
+}
+
+fragment Recipients on recipients {
+  id
+  user {
+    ...User
+  }
+  received_at
+  read_at
+}
+
+fragment MessageRecipients on messages_recipients {
+  id
+  user {
+    ...User
+  }
+  received_at
+  read_at
+}
+
+fragment LinkRecipients on links_recipients {
+  id
+  user {
+    ...User
+  }
+  received_at
+  read_at
+}
+
+fragment Poll on polls {
+  id
+  name
+  messages_and_links {
+    type
+    links {
+      ...Link
+    }
+    messages @connection(key: "messages") {
+      ...Message
+    }
+  }
+}
+
+fragment MessageAttachments on messages_attachments {
+  id
+  file_id
+  type
+  url
+}
+
+fragment CommentAttachments on comments_attachments {
+  id
+  file_id
+  type
+  url
+}
+
+fragment LinkAttachments on links_attachments {
+  id
+  file_id
+  type
+  url
+}

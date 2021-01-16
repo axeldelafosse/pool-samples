@@ -1,0 +1,6 @@
+mutation uploadPollPicture($pollId: String!, $file: Upload!) {
+  result: nest_uploadPollPicture(pollId: $pollId, file: $file) {
+    success
+    message
+  }
+}

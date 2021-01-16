@@ -1,0 +1,23 @@
+overwrite: true
+schema:
+  - https://graphql.poolmessenger.com/v1/graphql:
+      headers:
+        X-Hasura-Access-Key: X
+        X-Hasura-Role: user
+        X-Hasura-User-Id: 1
+
+documents: "src/graphql/**/*.{gql,graphql}"
+generates:
+  src/graphql.tsx:
+    plugins:
+      - "typescript-react-apollo"
+      - "typescript-operations"
+      - "typescript"
+    config:
+      reactApolloVersion: 3
+      noNamespaces: true
+      enumsAsTypes: true
+      avoidOptionals: true
+      withHooks: true
+      withHOC: false
+      withComponent: false

@@ -1,0 +1,12 @@
+subscription GetCommentsForLinkIdSub($id: uuid!, $offset: Int, $limit: Int) {
+  #  @connection(key: "links", filter: ["id"])
+  link: links(where: { id: { _eq: $id } }) {
+    id
+    name
+    title
+    comments(order_by: { created_at: desc }, offset: $offset, limit: $limit)
+      @connection(key: "comments") {
+      ...Comment
+    }
+  }
+}

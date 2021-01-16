@@ -1,0 +1,11 @@
+mutation updateDevicePushToken($userId: uuid!, $devicePushToken: jsonb!) {
+  update_users(
+    where: { id: { _eq: $userId } }
+    _set: { device_push_token: $devicePushToken }
+  ) {
+    affected_rows
+    returning {
+      device_push_token
+    }
+  }
+}

@@ -1,0 +1,7 @@
+mutation CreatePoll($name: String!, $userId: uuid!) {
+  insert_polls(objects: { name: $name, created_by: $userId }) {
+    returning {
+      id
+    }
+  }
+}

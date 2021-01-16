@@ -1,0 +1,20 @@
+mutation CreateSubpoll(
+  $name: String!
+  $icon: String!
+  $userId: uuid!
+  $pollParentId: uuid!
+) {
+  result: insert_polls(
+    objects: {
+      name: $name
+      icon: $icon
+      created_by: $userId
+      poll_parent_id: $pollParentId
+      type: "sub"
+    }
+  ) {
+    subpoll: returning {
+      id
+    }
+  }
+}

@@ -1,0 +1,8 @@
+mutation UpdatePoll($pollId: uuid!, $name: String!, $description: String!) {
+  update_polls(
+    where: { id: { _eq: $pollId } }
+    _set: { name: $name, description: $description }
+  ) {
+    affected_rows
+  }
+}

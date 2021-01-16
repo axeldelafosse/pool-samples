@@ -1,0 +1,7 @@
+query GetUserIsFollowingPollForUserId($userId: uuid!, $pollId: uuid!) {
+  isFollowingPoll: users_followed_polls(
+    where: { user_id: { _eq: $userId }, poll_id: { _eq: $pollId } }
+  ) {
+    id
+  }
+}

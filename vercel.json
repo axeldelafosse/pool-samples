@@ -1,0 +1,47 @@
+{
+  "version": 2,
+  "redirects": [
+    {
+      "source": "/workbox-service-worker.js",
+      "destination": "_next/static/workbox-service-worker.js"
+    }
+  ],
+  "rewrites": [{ "source": "(.*)", "destination": "packages/pool-webapp$1" }],
+  "headers": [
+    {
+      "source": "/service-worker.js",
+      "headers": [
+        {
+          "key": "cache-control",
+          "value": "public, max-age=43200, immutable"
+        },
+        {
+          "key": "Service-Worker-Allowed",
+          "value": "/"
+        }
+      ]
+    },
+    {
+      "source": "/workbox-service-worker.js",
+      "headers": [
+        {
+          "key": "cache-control",
+          "value": "public, max-age=43200, immutable"
+        },
+        {
+          "key": "Service-Worker-Allowed",
+          "value": "/"
+        }
+      ]
+    }
+  ],
+  "builds": [
+    { "src": "packages/pool-webapp/next.config.js", "use": "@now/next" }
+  ],
+  "build": {
+    "env": {
+      "STAGE": "@stage"
+    }
+  },
+  "regions": ["cdg1", "lhr1", "bru1", "sfo1", "iad1", "pdx1"]
+}

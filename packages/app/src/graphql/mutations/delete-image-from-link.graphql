@@ -1,0 +1,5 @@
+mutation DeleteImageFromLink($linkId: uuid!) {
+  update_links(where: { id: { _eq: $linkId } }, _set: { image: null }) {
+    affected_rows
+  }
+}

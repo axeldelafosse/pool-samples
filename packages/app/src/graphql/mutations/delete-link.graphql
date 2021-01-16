@@ -1,0 +1,5 @@
+mutation DeleteLink($linkId: uuid!, $now: timestamptz!) {
+  update_links_by_pk(pk_columns: { id: $linkId }, _set: { deleted_at: $now }) {
+    deleted_at
+  }
+}

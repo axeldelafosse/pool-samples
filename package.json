@@ -1,0 +1,32 @@
+{
+  "name": "pool",
+  "private": true,
+  "workspaces": {
+    "packages": [
+      "packages/app",
+      "packages/pool-nativeapp",
+      "packages/pool-webapp",
+      "packages/share-extension"
+    ]
+  },
+  "scripts": {
+    "deploy": "vercel --prod --no-clipboard",
+    "postinstall": "patch-package",
+    "heroku-postbuild": "cd packages/pool-api && yarn install"
+  },
+  "dependencies": {
+    "@apollo/client": "^3.2.5",
+    "react-native": "0.63.3",
+    "styled-components": "5.2.1"
+  },
+  "devDependencies": {
+    "babel-plugin-module-resolver": "^4.0.0",
+    "patch-package": "^6.2.2",
+    "postinstall-postinstall": "^2.1.0"
+  },
+  "resolutions": {
+    "webpack": "^4.44.2",
+    "@apollo/client": "^3.2.5",
+    "react-native-webview": "^10.10.0"
+  }
+}

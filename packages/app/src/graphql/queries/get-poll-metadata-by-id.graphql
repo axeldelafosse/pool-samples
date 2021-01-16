@@ -1,0 +1,18 @@
+query GetPollMetadataByID($id: uuid!) {
+  poll: polls_by_pk(id: $id) @connection(key: "polls", filter: ["id"]) {
+    id
+    name
+    icon
+    description
+    type
+    code
+    parent: parent_poll {
+      id
+      name
+      icon
+      description
+      type
+      code
+    }
+  }
+}

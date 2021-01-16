@@ -1,0 +1,16 @@
+mutation updateMessageReadAt(
+  $userId: uuid!
+  $messageId: uuid!
+  $now: timestamptz!
+) {
+  update_messages_recipients(
+    where: { user_id: { _eq: $userId }, message_id: { _eq: $messageId } }
+    _set: { read_at: $now }
+  ) {
+    affected_rows
+    returning {
+      id
+      read_at
+    }
+  }
+}

@@ -1,0 +1,21 @@
+mutation AddCommentAttachment(
+  $userId: uuid!
+  $fileId: uuid!
+  $commentId: uuid!
+  $type: String!
+  $url: String!
+) {
+  insert_comments_attachments(
+    objects: {
+      posted_by: $userId
+      file_id: $fileId
+      comment_id: $commentId
+      type: $type
+      url: $url
+    }
+  ) {
+    returning {
+      id
+    }
+  }
+}

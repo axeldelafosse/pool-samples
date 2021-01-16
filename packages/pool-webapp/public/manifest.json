@@ -1,0 +1,36 @@
+{
+  "name": "Pool",
+  "short_name": "Pool",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "background_color": "#FFFFFF",
+  "description": "Do more things with the people you love. Spend less time figuring out what to do and spend more time together.",
+  "display": "standalone",
+  "start_url": "/",
+  "scope": "/",
+  "theme_color": "#FFFFFF",
+  "permissions": ["clipboardRead"],
+  "related_applications": [
+    {
+      "platform": "play",
+      "url": "https://play.google.com/store/apps/details?id=com.pool.pool",
+      "id": "com.pool.pool"
+    },
+    {
+      "platform": "itunes",
+      "url": "https://itunes.apple.com/app/pool-make-it-happen/id1480994794",
+      "id": "com.pool.pool"
+    }
+  ],
+  "prefer_related_applications": true
+}

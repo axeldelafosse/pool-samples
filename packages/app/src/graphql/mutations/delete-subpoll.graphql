@@ -1,0 +1,8 @@
+mutation DeleteSubpoll($pollId: uuid!) {
+  delete_links_polls(where: { poll_id: { _eq: $pollId } }) {
+    affected_rows
+  }
+  delete_polls(where: { id: { _eq: $pollId }, type: { _eq: "sub" } }) {
+    affected_rows
+  }
+}

@@ -1,0 +1,16 @@
+query GetMessagesAndLinksForPollId($id: uuid!, $offset: Int, $limit: Int) {
+  poll: polls_by_pk(id: $id) {
+    id
+    name
+    messages_and_links(offset: $offset, limit: $limit)
+      @connection(key: "messages_and_links") {
+      type
+      links {
+        ...Link
+      }
+      messages @connection(key: "messages") {
+        ...Message
+      }
+    }
+  }
+}

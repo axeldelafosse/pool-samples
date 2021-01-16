@@ -1,0 +1,7 @@
+mutation BlockUser($userId: uuid!, $blockedBy: uuid!) {
+  insert_blocked_users_one(
+    object: { user_id: $userId, blocked_by: $blockedBy }
+  ) {
+    id
+  }
+}

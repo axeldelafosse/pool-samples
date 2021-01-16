@@ -1,0 +1,7 @@
+mutation AddUserToPoll($userId: uuid!, $pollId: uuid!) {
+  insert_users_polls(objects: { user_id: $userId, poll_id: $pollId }) {
+    returning {
+      id
+    }
+  }
+}

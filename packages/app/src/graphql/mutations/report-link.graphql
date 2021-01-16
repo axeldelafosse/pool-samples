@@ -1,0 +1,7 @@
+mutation ReportLink($linkId: uuid!, $userId: uuid, $reason: String) {
+  insert_reported_links(
+    objects: { link_id: $linkId, reported_by: $userId, reason: $reason }
+  ) {
+    affected_rows
+  }
+}

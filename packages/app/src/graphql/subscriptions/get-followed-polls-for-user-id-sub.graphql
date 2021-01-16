@@ -1,0 +1,69 @@
+subscription GetFollowedPollsForUserIdSub(
+  $userId: uuid!
+  $offset: Int!
+  $limit: Int!
+) {
+  polls: users_followed_polls(
+    where: { user_id: { _eq: $userId } }
+    order_by: {
+      poll: {
+        updated_at: desc
+        messages_aggregate: { max: { updated_at: desc_nulls_last } }
+        links_in_poll_aggregate: { max: { updated_at: desc_nulls_last } }
+      }
+    }
+    offset: $offset
+    limit: $limit
+  ) {
+    id
+    poll {
+      id
+      name
+      description
+      users: users_in_poll {
+        id
+        user {
+          ...User
+        }
+      }
+      newLinks: links_in_poll(
+        order_by: { link: { updated_at: desc } }
+        where: { link: { deleted_at: { _is_null: true } } }
+        limit: 1
+      ) {
+        id
+        link {
+          id
+          comments(
+            where: { recipients: { user_id: { _eq: $userId } } }
+            limit: 1
+            order_by: { created_at: desc }
+          ) {
+            id
+            recipients(
+              order_by: { received_at: desc }
+              where: { user_id: { _eq: $userId } }
+            ) {
+              id
+              read_at
+            }
+          }
+        }
+      }
+      messages(
+        where: { messages_recipients: { user_id: { _eq: $userId } } }
+        limit: 1
+        order_by: { created_at: desc }
+      ) {
+        id
+        recipients: messages_recipients(
+          order_by: { received_at: desc }
+          where: { user_id: { _eq: $userId } }
+        ) {
+          id
+          read_at
+        }
+      }
+    }
+  }
+}

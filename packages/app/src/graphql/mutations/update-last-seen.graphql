@@ -1,0 +1,8 @@
+mutation updateLastSeen($userId: uuid!, $now: timestamptz!) {
+  update_users(where: { id: { _eq: $userId } }, _set: { last_seen_at: $now }) {
+    affected_rows
+    returning {
+      last_seen_at
+    }
+  }
+}

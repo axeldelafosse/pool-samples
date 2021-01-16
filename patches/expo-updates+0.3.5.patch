@@ -1,0 +1,13 @@
+diff --git a/node_modules/expo-updates/expo-updates.gradle b/node_modules/expo-updates/expo-updates.gradle
+index c5dfa98..a786ad2 100644
+--- a/node_modules/expo-updates/expo-updates.gradle
++++ b/node_modules/expo-updates/expo-updates.gradle
+@@ -50,7 +50,7 @@ afterEvaluate {
+       if (Os.isFamily(Os.FAMILY_WINDOWS)) {
+         commandLine("cmd", "/c", ".\\node_modules\\expo-updates\\run-expo.bat", "bundle-assets", projectRoot, "--platform", "android", "--dest", assetsDir)
+       } else {
+-        commandLine("./node_modules/expo-updates/run-expo.sh", "bundle-assets", projectRoot, "--platform", "android", "--dest", assetsDir)
++        commandLine("../../node_modules/expo-updates/run-expo.sh", "bundle-assets", projectRoot, "--platform", "android", "--dest", assetsDir)
+       }
+ 
+       enabled config."bundleIn${targetName}" || targetName.toLowerCase().contains("release")

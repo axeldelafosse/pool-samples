@@ -1,0 +1,15 @@
+mutation uploadAttachment(
+  $file: Upload!
+  $resourceId: String!
+  $resourceType: String!
+) {
+  attachment: nest_uploadFile(
+    file: $file
+    resourceId: $resourceId
+    resourceType: $resourceType
+  ) {
+    id
+    reference
+    url
+  }
+}

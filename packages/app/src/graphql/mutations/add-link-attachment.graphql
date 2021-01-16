@@ -1,0 +1,25 @@
+mutation AddLinkAttachment(
+  $userId: uuid!
+  $fileId: uuid!
+  $linkId: uuid!
+  $type: String!
+  $url: String!
+  $now: timestamptz!
+) {
+  insert_links_attachments(
+    objects: {
+      posted_by: $userId
+      file_id: $fileId
+      link_id: $linkId
+      type: $type
+      url: $url
+    }
+  ) {
+    returning {
+      id
+    }
+  }
+  update_links(where: { id: { _eq: $linkId } }, _set: { updated_at: $now }) {
+    affected_rows
+  }
+}

@@ -1,0 +1,5 @@
+mutation UpdateLinkURL($linkId: uuid!, $url: String) {
+  update_links(where: { id: { _eq: $linkId } }, _set: { url: $url }) {
+    affected_rows
+  }
+}
